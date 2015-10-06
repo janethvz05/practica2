@@ -50,7 +50,9 @@ $scope.guardar = function(persona){
                         $scope.chats.push({"nombre":result.rows.item(i).nombre,
                                            "apellido":result.rows.item(i).apellido,
                                            "telefono":result.rows.item(i).telefono,
-                      }                     "email":result.rows.item(i).email});
+                                           "email":result.rows.item(i).email});
+                            
+                        }                    
                     }
                 },
                 function(error) {
