@@ -20,11 +20,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
-  });
-  
-  db = $cordovaSQLite.openDB("practica2_agenda.db");
+      db = $cordovaSQLite.openDB("practica2_agenda.db");
         $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS agenda (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre varchar(255), apellido varchar(255), telefono varchar(255), email varchar(255)');
 
+  
+    
+  });
+  
   
   
   
