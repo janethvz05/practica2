@@ -42,6 +42,28 @@ angular.module('starter.services', [])
       function(error){
           statusMessage = "Error: " + error.message;
       });
+    },
+    
+    
+    get: function(chatId) {
+        chats=[];
+    $cordovaSQLite.execute(db, 'SELECT * FROM agenda where id=?',[chatid])
+         .then(function(result){
+             
+             if (result.rows.length>0){
+                 
+                 chats.push({"id":result.rows.item(0).id,
+                             "nombre":result.rows.item(0).nombre,
+                             "apellido":result.rows.item(0).apellido,
+                             "telefono":result.rows.item(0).telefono,
+                             "email":result.rows.item(0).email});
+             }
+             return chats;
+             
+    },
+    function(error){
+           statusMessage= "Error: " + error.message;
+    });
     }
 
   };
