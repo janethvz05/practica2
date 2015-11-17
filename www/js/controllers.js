@@ -60,9 +60,9 @@ angular.module('starter.controllers', [])
         );
   */
 
-  $scope.getAll = function() 
+  $scope.getAll = function()
   {
-      $scope.chats = Chats.all(); 
+      $scope.chats = Chats.all();
   };
   
   $scope.remove = function(chat) {
@@ -70,8 +70,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function($scope, $stateParams, Chats,$cordovaSQLite) {
+  
+  //$scope.chat = Chats.get($stateParams.chatId);
+  $scope.persona = Chats.get($stateParams.chatId);
+  
+  $scope.guardar = function(persona){
+        
+        $cordovaSQLite.execute(db, 'UPDATE agenda set nombre=?,apellido=?,telefono=?,email=? where id = ?', [persona.nombre,persona.apellido,persona.telefono,persona.email,persona.id])
+        .then(function(result) {
+            $scope.statusMessage = "Registro guardado!";
+        }, function(error) {
+            $scope.statusMessage = "Error al guardar: " + error.message;
+        })
+        
+        console.log("NOMBRE: "+persona.nombre);
+        console.log("ID: "+persona.id);
+    }
+  
+    
+  
 })
 
 .controller('AccountCtrl', function($scope) {
